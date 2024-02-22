@@ -14,21 +14,6 @@ class BaseEncDec():
         41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51 ]
         self.processed_string = ""
         self.all_operations = []
-    
-    @staticmethod
-    def tobits(s):
-        result = []
-        for c in s:
-            bits = bin(ord(c))[2:]
-            bits = '00000000'[len(bits):] + bits
-            result.extend([int(b) for b in bits])
-        return result
-
-    @staticmethod
-    def frombits(bits):
-        for b in range(int(len(bits) / 6)):
-            byte = bits[b*6:(b+1)*6]
-            return int(''.join([str(bit) for bit in byte]), 2)
 
     def history(self):
         if len(self.all_operations.keys()) == 0:
@@ -133,7 +118,6 @@ class BaseEncDec():
 
         return decoded_string
         
-
 
 if __name__ == "__main__":
     test = BaseEncDec("ABC")
