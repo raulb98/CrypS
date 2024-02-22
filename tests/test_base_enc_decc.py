@@ -11,6 +11,10 @@ def testing_base_enc(cls):
             encoded_string = self.wrap.base_enc_dec.encode(string)
             assert(encoded_string == rez)
             print("Passed")
+        def test_decode(self, string,rez):
+            encoded_string = self.wrap.base_enc_dec.decode(string)
+            assert(encoded_string == rez)
+            print("Passed")
     return TestDecorator 
 
 
@@ -22,3 +26,8 @@ class TestBaseEncDec():
 tester = TestBaseEncDec(BaseEncDec())
 tester.test_encode("Man is distinguished, not only by his reason, but ...", "TWFuIGlzIGRpc3Rpbmd1aXNoZWQsIG5vdCBvbmx5IGJ5IGhpcyByZWFzb24sIGJ1dCAuLi4=")
 tester.test_encode("Sternocleidomastoidian", "U3Rlcm5vY2xlaWRvbWFzdG9pZGlhbg==")
+tester.test_encode("ABC", "QUJD")
+
+tester.test_decode("QUJD", "ABC")
+tester.test_decode("TWFuIGlzIGRpc3Rpbmd1aXNoZWQsIG5vdCBvbmx5IGJ5IGhpcyByZWFzb24sIGJ1dCAuLi4=", "Man is distinguished, not only by his reason, but ...")
+tester.test_decode("U3Rlcm5vY2xlaWRvbWFzdG9pZGlhbg==", "Sternocleidomastoidian")
