@@ -16,7 +16,7 @@ class BaseEncDec():
         self.all_operations = []
 
     def history(self):
-        if len(self.all_operations.keys()) == 0:
+        if len(self.all_operations) == 0:
             print("There is no data saved!")
         else:
             print(self.all_operations)
@@ -67,10 +67,10 @@ class BaseEncDec():
             while i < 3:
                 encoded_string += "="
                 i += 1
-        
+
+        self.processed_string = encoded_string
         if should_save and (string == ""):
-            self.processed_string = decoded_string
-            self.all_operations.append({"input": to_process, "decoded": decoded_string})
+            self.all_operations.append({"input": to_process, "encoded": encoded_string})
 
         return encoded_string
 
@@ -111,9 +111,9 @@ class BaseEncDec():
             if (length > (L + 2)) and to_process[L + 2] != '=':
                 val |= self.deocde_alphabet[ord(to_process[L + 2])] << 6
                 decoded_string += chr(val >> 8 & 0xFF)
-
+        
+        self.processed_string = decoded_string
         if should_save and (string == ""):
-            self.processed_string = decoded_string
             self.all_operations.append({"input": to_process, "decoded": decoded_string})
 
         return decoded_string
@@ -121,5 +121,7 @@ class BaseEncDec():
 
 if __name__ == "__main__":
     test = BaseEncDec("ABC")
-    data = test.encode("QWE")
+    test.encode(should_save=True)
     test.decode(should_save=True)
+    test.history()
+
