@@ -9,4 +9,12 @@ It also comes with some extra features such as a History of the operations (enco
 base64 = BaseEncDec()
 base64.encode("ABC")
 QUJD
+
+base64.decode("QUJD")
+ABC
 ```
+
+# DES Algorithm
+Implementation for DES.
+The Encryption keys for Feistel are generated using a random seed.
+
